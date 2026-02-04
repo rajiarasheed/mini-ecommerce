@@ -40,7 +40,12 @@ exports.getProducts = async (req, res) => {
       productQuery = productQuery.sort({ price: -1 });
     }
     const products = await productQuery.skip(skip).limit(limit);
-    res.json(products);
+    res.json({
+      products,
+      currentPage,
+      totalPages: Math.ceil(totalProducts / pageLimit),
+      totalProducts,
+    });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
