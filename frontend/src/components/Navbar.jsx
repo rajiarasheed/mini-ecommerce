@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 export const Navbar = () => {
     const [menuOpen,setMenuOpen]=useState(false)
@@ -8,9 +9,9 @@ export const Navbar = () => {
         <div className="flex justify-between items-center">
         <h1 className="text-2xl font-bold">MiniEcommerce</h1>
         <div className="space-x-4 sm:flex sm:flex-row">
-          <button href="#" className="bg-[#0e83f7] px-4 py-3 rounded sm:flex sm:flex-row hidden lg:hidden text-xs">
+          <Link to="/add-product" className="bg-[#0e83f7] px-4 py-3 rounded sm:flex sm:flex-row hidden lg:hidden text-xs">
             AddProducts
-          </button>
+          </Link>
           <button className="lg:hidden text-2xl" onClick={()=>setMenuOpen(!menuOpen)}>
             {menuOpen ? "✖" : "☰"}
         </button>
@@ -35,14 +36,14 @@ export const Navbar = () => {
             <option value="">Price: Low - High</option>
             <option value="">Price: High - Low</option>
           </select>
-          <button href="#" className="bg-[#0e83f7] px-4 py-3 rounded flex flex-row sm:hidden text-xs">
+          <Link to="/add-product" className="bg-[#0e83f7] px-4 py-3 rounded flex flex-row sm:hidden text-xs">
             AddProducts
-          </button>
+          </Link>
         </div>
         <div className="space-x-4">
-          <button href="#" className="bg-[#0e83f7] px-4 py-3 rounded hidden lg:flex">
+          <Link to="/add-product" className="bg-[#0e83f7] px-4 py-3 rounded hidden lg:flex">
             AddProducts
-          </button>
+          </Link>
           </div>
         
       </nav>
