@@ -1,12 +1,14 @@
+import { Navbar } from "./components/Navbar"
+import Products from "./pages/Products"
 
 
 function App() {
 
   return (
     <>
-      <h1 class="text-3xl font-bold underline text-amber-300">
-    Hello world!
-  </h1>
+      
+  <Navbar />
+  <Products />
     </>
   )
 }
