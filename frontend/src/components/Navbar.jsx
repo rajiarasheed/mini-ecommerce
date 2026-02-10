@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-export const Navbar = () => {
+export const Navbar = ({search,setSearch,category,setCategory,sort,setSort}) => {
     const [menuOpen,setMenuOpen]=useState(false)
   return (
     <div>
@@ -22,19 +22,23 @@ export const Navbar = () => {
         <div className={`py-7 lg:py-0 lg:flex flex-col lg:flex-row items-start gap-2 lg:gap-4 w-full lg:w-auto ${menuOpen?"flex":"hidden lg:flex"}`}>
           <input
             type="text"
+            value={search}
+            onChange={(e)=>setSearch(e.target.value)}
             placeholder="search here..."
             className="bg-[#6a89a7] px-4 py-2 rounded-full w-60"
           />
-          <select name="" id="" className="px-3 py-2 rounded bg-[#384959]">
+          <select 
+          value={category} onChange={(e)=>setCategory(e.target.value)} className="px-3 py-2 rounded bg-[#384959]">
             <option value="">Category</option>
-            <option value="">Electronics</option>
-            <option value="">Electronics</option>
-            <option value="">Electronics</option>
+            <option value="Electronics">Electronics</option>
+            <option value="Furniture">Furniture</option>
+            <option value="Clothing">Clothing</option>
+            <option value="Toys">Toys</option>
           </select>
-          <select name="" id="" className="px-3 py-2 rounded bg-[#384959]">
+          <select value={sort} onChange={(e)=>setSort(e.target.value)} className="px-3 py-2 rounded bg-[#384959]">
             <option value="">Sort By Price</option>
-            <option value="">Price: Low - High</option>
-            <option value="">Price: High - Low</option>
+            <option value="price_asc">Price: Low - High</option>
+            <option value="price_des">Price: High - Low</option>
           </select>
           <Link to="/add-product" className="bg-[#0e83f7] px-4 py-3 rounded flex flex-row sm:hidden text-xs">
             AddProducts

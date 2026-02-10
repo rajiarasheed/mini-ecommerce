@@ -8,17 +8,26 @@ import {
 import { addProduct, fetchProducts } from "../api/api";
 
 const ProductsContext = createContext();
+
+
 export const ProductsProvider = ({ children }) => {
+
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const fetchAllProducts = async (params = {}) => {
     try {
       setLoading(true);
-      const response = await fetchProducts(params);
+      // remove empty values
+    const cleanParams = Object.fromEntries(
+      Object.entries(params).filter(([_, v]) => v !== "" && v !== undefined)
+    );
+      const response = await fetchProducts(cleanParams);
       setProducts(response.data);
+      return response.data;
     } catch (error) {
       console.error("Error on fetching products", error);
+      return []
     } finally {
       setLoading(false);
     }
@@ -26,8 +35,8 @@ export const ProductsProvider = ({ children }) => {
   const createProduct = async (productData) => {
     try {
       await addProduct(productData);
-      const response = await fetchProducts();
-      setProducts(response.data);
+       fetchAllProducts();
+    //   setProducts(response.data);
     //   fetchAllProducts();
     } catch (error) {
       console.error("Error on adding Products", error);
