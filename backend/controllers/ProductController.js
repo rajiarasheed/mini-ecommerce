@@ -11,7 +11,7 @@ const Product = require("../models/productModel");
 
 exports.getProducts = async (req, res) => {
   try {
-    const { search, category, sort, page = 1, limit = 3 } = req.query;
+    const { search, category, sort, page = 1, limit = 4 } = req.query;
     let query = {};
 
     // search by name
@@ -23,6 +23,8 @@ exports.getProducts = async (req, res) => {
     if (category) {
       query.category = category;
     }
+
+    
 
     // pagination
     const currentPage = Number(page);
@@ -114,3 +116,11 @@ exports.deleteProduct = async (req, res) => {
     res.status(400).json({ message: "Invalid product ID" });
   }
 };
+
+
+// min and max price filter
+    // if(minPrice || maxPrice){
+    //   query.price={};
+    //   if (minPrice) query.price["$gte"]=Number(minPrice)
+    //   if (maxPrice) query.price["$lte"]=Number(maxPrice)
+    // }
