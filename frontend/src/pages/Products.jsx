@@ -18,10 +18,10 @@ export const Products = ({search,category,sort}) => {
     const width = window.innerWidth;
 
     let newLimit;
-    if (width < 640) newLimit = 1;
-    else if (width < 768) newLimit = 2;
-    else if (width < 1024) newLimit = 3;
-    else newLimit = 4;
+    if (width < 640) newLimit = 3;
+    else if (width < 768) newLimit = 4;
+    else if (width < 1024) newLimit = 6;
+    else newLimit = 8;
 
     setLimit(newLimit);
     setPage(1); // reset page when layout changes
@@ -46,7 +46,7 @@ useEffect(() => {
 // Fetch products
 useEffect(() => {
   getProducts();
-}, [search, category, sort, page, limit]);
+}, [search, category, sort, page, limit ]);
 
 
   if (loading) return <p className="p-7">Loading</p>;
@@ -59,14 +59,16 @@ useEffect(() => {
       <div className="flex justify-center">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {products.map((product) => (
-            <div className="rounded p-4 shadow" key={product._id}>
+            <div className="rounded p-4 shadow hover:shadow-lg transition duration-300" key={product._id}>
               <img
                 className="w-full h-44 object-cover rounded-t-lg"
                 src={product.image}
                 alt=""
               />
-              <h3 className="mt-2">{product.name}</h3>
-              <p>{product.price}</p>
+              <div className="flex mt-2 justify-between">
+              <h3>{product.name}</h3>
+              <p><span className="font-bold">₹</span>{product.price}</p>
+              </div>
             </div>
           ))}
           {/* <div className="rounded p-4 shadow">

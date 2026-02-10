@@ -8,6 +8,7 @@ function App() {
    const [search, setSearch] = useState("");
   const [category, setCategory] = useState("");
   const [sort, setSort] = useState("");
+ 
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar 
@@ -17,11 +18,13 @@ function App() {
       setCategory={setCategory}
       sort={sort}
       setSort={setSort}
+      
       />
       <main className="flex-1 flex">
         <Routes>
-          <Route path="/" element={<Products search={search} category={category} sort={sort}/>}></Route>
+          <Route path="/" element={<Products search={search} category={category} sort={sort} />}></Route>
           <Route path="/add-product" element={<AddProduct />}></Route>
+          
         </Routes>
       </main>
     </div>
